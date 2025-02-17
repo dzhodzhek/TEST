@@ -1,0 +1,113 @@
+/* Скидання стилів */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100vh;
+    overflow: hidden;
+    /* Забороняємо прокрутку сторінки */
+    font-family: Arial, sans-serif;
+}
+
+/* Головна оболонка */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Фіксований хедер */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 20px;
+    z-index: 10;
+}
+
+/* Основний контент */
+.content {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    /* За замовчуванням всі секції видимі */
+}
+
+/* Секції всередині main */
+.content section {
+    flex: 1;
+    /* Кожна секція займає рівну частину екрану */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    transition: transform 0.3s ease-in-out;
+    /* Плавна анімація */
+}
+
+/* Фон для різних секцій */
+.content section:nth-child(1) {
+    background: lightcoral;
+}
+
+.content section:nth-child(2) {
+    background: lightblue;
+}
+
+content section:nth-child(3) {
+    background: lightgreen;
+}
+
+/* Фіксований футер (тільки для ПК) */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+}
+
+/* 🟢 АДАПТИВНІСТЬ ДЛЯ МОБІЛЬНИХ 📱 */
+@media screen and (max-width: 768px) and (max-height: 1400px) {
+
+    /* Приховуємо футер */
+    footer {
+        display: none;
+    }
+
+    /* Використання 100% екрану без браузерної шапки */
+    html,
+    body {
+        height: 100dvh;
+    }
+
+    /* Робимо контент горизонтально прокручуваним */
+    .content {
+        width: 300vw;
+        /* Кожна секція займає 100vw */
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        transform: translateX(-100vw);
+        /* Початковий показ середнього блоку */
+    }
+
+    .content section {
+        min-width: 100vw;
+        scroll-snap-align: center;
+    }
+}
