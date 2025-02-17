@@ -6,7 +6,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh; /* Займає всю висоту вікна браузера */
-    overflow: hidden; /* Забороняємо прокручування для всього тіла */
+    overflow: hidden; /* Забороняємо прокручування сторінки */
 }
 
 .wrapper {
@@ -36,24 +36,25 @@ footer {
 }
 
 main {
-    flex: 1; /* Дозволяє контенту main займати всю доступну центральну область */
-    overflow-y: auto; /* Вертикальна прокрутка для контенту */
+    flex: 1; /* Займає весь простір між header і footer */
+    overflow-y: hidden; /* Вимикаємо вертикальну прокрутку */
+    overflow-x: hidden; /* Встановлено лише для desktop */
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Для десктопу: секції в один рядок */
-    gap: 20px; /* Відступи між секціями */
+    grid-template-columns: repeat(3, 1fr); /* Для desktop три секції поруч */
+    gap: 20px;
     padding: 20px;
     box-sizing: border-box;
 }
 
+/* Кольори для секцій */
 main section {
     padding: 20px;
     box-sizing: border-box;
-    border: 1px solid #ddd; /* Для візуалізації */
-    color: white; /* Білий текст, щоб контрастувати із фоновими кольорами */
-    text-align: center; /* Вирівнювання тексту по центру */
+    border: 1px solid #ddd;
+    color: white;
+    text-align: center;
 }
 
-/* Кольори секцій */
 main section:nth-child(1) {
     background-color: #ff6f61; /* Червоний */
 }
@@ -66,14 +67,32 @@ main section:nth-child(3) {
     background-color: #63db63; /* Зелений */
 }
 
-/* Мобільний вигляд */
+/* Мобільне розташування з горизонтальним свайпом */
 @media only screen and (max-width: 768px) {
-    header, footer {
-        position: static; /* У мобільному вигляді не закріплюємо header і footer */
+    main {
+        display: flex; /* Розташовує блоки по горизонталі */
+        flex-direction: row;
+        overflow-x: scroll; /* Увімкнута горизонтальна прокрутка */
+        overflow-y: hidden; /* Вертикальна прокрутка вимкнена */
+        scroll-snap-type: x mandatory; /* Увімкнута горизонтальна фіксація */
+        padding: 0; /* Прибираємо відступи */
+        margin: 0; /* Прибираємо відступи */
     }
 
-    main {
-        grid-template-columns: 100%; /* Кожна секція — повна ширина екрану */
-        overflow-x: auto; /* Для горизонтального скролінгу на мобільних */
+    main section {
+        flex: 0 0 100vw; /* Кожна секція займає 100% ширини екрана */
+        scroll-snap-align: start; /* Блоки фіксуються на початку екрана */
+        height: calc(100vh - 50px); /* Займає 100% висоти екрану мінус header */
+        border: none; /* Рамки прибрані для більш чистого вигляду */
+    }
+
+    header {
+        position: sticky;
+        top: 0;
+        height: 50px;
+    }
+
+    footer {
+        display: none; /* Футер повністю прихований */
     }
 }
