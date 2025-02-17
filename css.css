@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    overflow-x: hidden; /* Забороняє горизонтальний скрол для загальної сторінки */
 }
 
 .wrapper {
@@ -20,52 +21,18 @@ header {
 
 main {
     flex: 1;
-    padding: 20px;
-}
-
-footer {
-    background-color: #f4f4f4;
-    color: #333;
-    text-align: center;
-    padding: 10px 0;
-}
-
-/* Адаптивність */
-@media only screen and (max-width: 768px) {
-    body {
-        font-size: 14px;
-    }
-
-    main {
-        padding: 10px;
-    }
-
-    #footer {
-        display: none;
-    }
-}/* Базові стилі */
-body {
-    margin: 0;
+    display: flex; /* Включаємо горизонтальне розташування секцій для мобільних */
+    overflow-x: auto; /* Дозволяємо горизонтальний скрол лише для секцій */
+    scroll-snap-type: x mandatory; /* Фіксуємо прив’язки для секцій під час прокручування */
     padding: 0;
-    font-family: Arial, sans-serif;
+    margin: 0;
 }
 
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-header {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-}
-
-main {
-    flex: 1;
+main section {
+    flex: 0 0 100%; /* Кожна секція займає 100% ширини екрана */
+    scroll-snap-align: start; /* Прив’язка до одного екрана */
     padding: 20px;
+    box-sizing: border-box;
 }
 
 footer {
@@ -75,17 +42,19 @@ footer {
     padding: 10px 0;
 }
 
-/* Адаптивність */
+/* Горизонтальна адаптивність */
 @media only screen and (max-width: 768px) {
     body {
         font-size: 14px;
     }
 
-    main {
-        padding: 10px;
+    #footer {
+        display: none; /* Прибираємо футер */
     }
 
-    #footer {
-        display: none;
+    /* На мобільному контент секцій горизонтальний */
+    main {
+        display: flex;
+        flex-wrap: nowrap; /* Всі секції в одному рядку (горизонтально) */
     }
 }
