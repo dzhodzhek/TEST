@@ -41,8 +41,8 @@ main {
     overflow-x: hidden; /* Встановлено лише для desktop */
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Для desktop три секції поруч */
-    gap: 20px;
-    padding: 20px;
+    padding-left: 100px;
+    padding-right: 100px;
     box-sizing: border-box;
 }
 
@@ -89,7 +89,6 @@ main section:nth-child(3) {
     header {
         position: sticky;
         top: 0;
-        height: 50px;
     }
 
     footer {
