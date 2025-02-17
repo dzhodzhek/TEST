@@ -3,58 +3,77 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    overflow-x: hidden; /* Забороняє горизонтальний скрол для загальної сторінки */
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Займає всю висоту вікна браузера */
+    overflow: hidden; /* Забороняємо прокручування для всього тіла */
 }
 
 .wrapper {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    flex: 1; /* Займає весь доступний простір між header і footer */
 }
 
 header {
     background-color: #333;
     color: white;
     text-align: center;
-    padding: 10px 0;
-}
-
-main {
-    flex: 1;
-    display: flex; /* Включаємо горизонтальне розташування секцій для мобільних */
-    overflow-x: auto; /* Дозволяємо горизонтальний скрол лише для секцій */
-    scroll-snap-type: x mandatory; /* Фіксуємо прив’язки для секцій під час прокручування */
-    padding: 0;
-    margin: 0;
-}
-
-main section {
-    flex: 0 0 100%; /* Кожна секція займає 100% ширини екрана */
-    scroll-snap-align: start; /* Прив’язка до одного екрана */
-    padding: 20px;
-    box-sizing: border-box;
+    padding: 10px;
+    position: sticky; /* Закріплюємо header зверху */
+    top: 0;
+    z-index: 10;
 }
 
 footer {
     background-color: #f4f4f4;
     color: #333;
     text-align: center;
-    padding: 10px 0;
+    padding: 10px;
+    position: sticky; /* Закріплюємо footer знизу */
+    bottom: 0;
+    z-index: 10;
 }
 
-/* Горизонтальна адаптивність */
+main {
+    flex: 1; /* Дозволяє контенту main займати всю доступну центральну область */
+    overflow-y: auto; /* Вертикальна прокрутка для контенту */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Для десктопу: секції в один рядок */
+    gap: 20px; /* Відступи між секціями */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+main section {
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid #ddd; /* Для візуалізації */
+    color: white; /* Білий текст, щоб контрастувати із фоновими кольорами */
+    text-align: center; /* Вирівнювання тексту по центру */
+}
+
+/* Кольори секцій */
+main section:nth-child(1) {
+    background-color: #ff6f61; /* Червоний */
+}
+
+main section:nth-child(2) {
+    background-color: #6bc1ff; /* Синій */
+}
+
+main section:nth-child(3) {
+    background-color: #63db63; /* Зелений */
+}
+
+/* Мобільний вигляд */
 @media only screen and (max-width: 768px) {
-    body {
-        font-size: 14px;
+    header, footer {
+        position: static; /* У мобільному вигляді не закріплюємо header і footer */
     }
 
-    #footer {
-        display: none; /* Прибираємо футер */
-    }
-
-    /* На мобільному контент секцій горизонтальний */
     main {
-        display: flex;
-        flex-wrap: nowrap; /* Всі секції в одному рядку (горизонтально) */
+        grid-template-columns: 100%; /* Кожна секція — повна ширина екрану */
+        overflow-x: auto; /* Для горизонтального скролінгу на мобільних */
     }
 }
