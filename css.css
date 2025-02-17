@@ -1,115 +1,91 @@
-/* Скидання стилів */
-* {
+/* Базові стилі */
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-html,
-body {
-    height: 100vh;
-    overflow: hidden;
-    /* Забороняємо прокрутку сторінки */
     font-family: Arial, sans-serif;
 }
 
-/* Головна оболонка */
 .wrapper {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
 }
 
-/* Фіксований хедер */
 header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: #333;
+    background-color: #333;
     color: white;
     text-align: center;
-    padding: 20px;
-    font-size: 20px;
-    z-index: 10;
+    padding: 10px 0;
 }
 
-/* Основний контент */
-.content {
-    display: flex;
-    width: 100%;
-    /* За замовчуванням всі секції видимі */
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
-    /* Дозволяє боковий свайп */
-    -webkit-overflow-scrolling: touch;
-    /* Для кращого прокручування на мобільних */
-    touch-action: pan-x;
-    /* Дозволяє свайп через горизонтальну прокрутку */
-}
-
-/* Секції всередині main */
-.content section {
+main {
     flex: 1;
-    /* Кожна секція займає рівну частину екрану */
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    font-weight: bold;
-    scroll-snap-align: center;
-    /* Фіксація секції */
-}
-
-/* Фон для різних секцій */
-.content section:nth-child(1) {
-    background: lightcoral;
-}
-
-.content section:nth-child(2) {
-    background: lightblue;
-}
-
-.content section:nth-child(3) {
-    background: lightgreen;
-}
-
-/* Фіксований футер (тільки для ПК) */
-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: #333;
-    color: white;
-    text-align: center;
     padding: 20px;
-    font-size: 18px;
 }
 
-/* 🟢 АДАПТИВНІСТЬ ДЛЯ МОБІЛЬНИХ 📱 */
-@media screen and (max-width: 768px) and (max-height: 1400px) {
+footer {
+    background-color: #f4f4f4;
+    color: #333;
+    text-align: center;
+    padding: 10px 0;
+}
 
-    /* Приховуємо футер */
-    footer {
+/* Адаптивність */
+@media only screen and (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    main {
+        padding: 10px;
+    }
+
+    #footer {
         display: none;
     }
+}/* Базові стилі */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
 
-    /* Використання 100% екрану без браузерної шапки */
-    html,
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+footer {
+    background-color: #f4f4f4;
+    color: #333;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Адаптивність */
+@media only screen and (max-width: 768px) {
     body {
-        height: 100dvh;
+        font-size: 14px;
     }
 
-    /* Контент залишається видимим */
-    .content {
-        width: 300vw;
-        /* Кожна секція займає 100vw */
+    main {
+        padding: 10px;
     }
 
-    .content section {
-        min-width: 100vw;
-        scroll-snap-align: center;
+    #footer {
+        display: none;
     }
 }
