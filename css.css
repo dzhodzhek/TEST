@@ -37,9 +37,15 @@ header {
 /* Основний контент */
 .content {
     display: flex;
-    flex: 1;
     width: 100%;
     /* За замовчуванням всі секції видимі */
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    /* Дозволяє боковий свайп */
+    -webkit-overflow-scrolling: touch;
+    /* Для кращого прокручування на мобільних */
+    touch-action: pan-x;
+    /* Дозволяє свайп через горизонтальну прокрутку */
 }
 
 /* Секції всередині main */
@@ -52,8 +58,8 @@ header {
     align-items: center;
     font-size: 24px;
     font-weight: bold;
-    transition: transform 0.3s ease-in-out;
-    /* Плавна анімація */
+    scroll-snap-align: center;
+    /* Фіксація секції */
 }
 
 /* Фон для різних секцій */
@@ -65,7 +71,7 @@ header {
     background: lightblue;
 }
 
-content section:nth-child(3) {
+.content section:nth-child(3) {
     background: lightgreen;
 }
 
@@ -96,14 +102,10 @@ footer {
         height: 100dvh;
     }
 
-    /* Робимо контент горизонтально прокручуваним */
+    /* Контент залишається видимим */
     .content {
         width: 300vw;
         /* Кожна секція займає 100vw */
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        transform: translateX(-100vw);
-        /* Початковий показ середнього блоку */
     }
 
     .content section {
